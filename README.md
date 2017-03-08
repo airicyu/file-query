@@ -20,10 +20,6 @@ This node.js module can map your file directory structure into a virtual XML DOM
 $ npm install --save file-query
 ```
 
-## Human contact
-
-- Eric Yu: airic.yu@gmail.com
-
 ------------------------
 ## Quick Samples
 
@@ -265,3 +261,8 @@ Return a pretty-printed(tab size=4) XML DOM structure plain text value. This is 
 **debug(flag)**
 Enable or disable debug mode. If in debug mode, file manipulation would log the operation in console. Debug mode is by default disabled.
 This is sync function.
+
+------------------------
+## Contact
+
+- Eric Yu: airic.yu@gmail.com
