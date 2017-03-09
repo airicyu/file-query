@@ -133,7 +133,8 @@ describe('file-query-test-api', function () {
     });
 
     it("test fileQuery.moveToDirSync(context: object)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
         var selected = $(d1Selector).children('dir,file');
 
         selected.moveToDirSync($(d2Selector));
@@ -141,12 +142,13 @@ describe('file-query-test-api', function () {
         $.fileQuery('refresh');
 
         expect($('dir,file', $(d1Selector)).length).to.equal(0);
-        expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+        expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
         done();
     });
 
     it("test fileQuery.moveToDirSync(dest: string)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
         var selected = $(d1Selector).children('dir,file');
 
         selected.moveToDirSync(d2FilePath);
@@ -154,7 +156,7 @@ describe('file-query-test-api', function () {
         $.fileQuery('refresh');
 
         expect($('dir,file', $(d1Selector)).length).to.equal(0);
-        expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+        expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
         done();
     });
 
@@ -185,7 +187,8 @@ describe('file-query-test-api', function () {
     });
 
     it("test fileQuery.moveToDir(context: object)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
         var selected = $(d1Selector).children('dir,file');
 
         selected.moveToDir($(d2Selector)).then(function (context) {
@@ -193,7 +196,7 @@ describe('file-query-test-api', function () {
             $.fileQuery('refresh');
 
             expect($('dir,file', $(d1Selector)).length).to.equal(0);
-            expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+            expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
             done();
 
         }).catch(function (error) {
@@ -202,7 +205,8 @@ describe('file-query-test-api', function () {
     });
 
     it("test fileQuery.moveToDir(dest: string)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
         var selected = $(d1Selector).children('dir,file');
 
         selected.moveToDir(d2FilePath).then(function (context) {
@@ -210,7 +214,7 @@ describe('file-query-test-api', function () {
             $.fileQuery('refresh');
 
             expect($('dir,file', $(d1Selector)).length).to.equal(0);
-            expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+            expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
             done();
 
         }).catch(function (error) {
@@ -230,24 +234,26 @@ describe('file-query-test-api', function () {
     });
 
     it("test fileQuery.copyToDirSync(context: object)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
 
         $(d1Selector).children('dir,file').copyToDirSync($(d2Selector));
 
         $.fileQuery('refresh');
-        expect($('dir,file', $(d1Selector)).length).to.equal(dirFilesCount);
-        expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+        expect($('dir,file', $(d1Selector)).length).to.equal(dir1FilesCount);
+        expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
         done();
     });
 
     it("test fileQuery.copyToDirSync(dest: string)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
 
         $(d1Selector).children('dir,file').copyToDirSync(d2FilePath);
 
         $.fileQuery('refresh');
-        expect($('dir,file', $(d1Selector)).length).to.equal(dirFilesCount);
-        expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+        expect($('dir,file', $(d1Selector)).length).to.equal(dir1FilesCount);
+        expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
         done();
     });
 
@@ -275,12 +281,13 @@ describe('file-query-test-api', function () {
     });
 
     it("test fileQuery.copyToDir(context: object)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
 
         $(d1Selector).children('dir,file').copyToDir($(d2Selector)).then(function (context) {
             $.fileQuery('refresh');
-            expect($('dir,file', $(d1Selector)).length).to.equal(dirFilesCount);
-            expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+            expect($('dir,file', $(d1Selector)).length).to.equal(dir1FilesCount);
+            expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
             done();
         }).catch(function (error) {
             console.log('error:', error);
@@ -288,12 +295,13 @@ describe('file-query-test-api', function () {
     });
 
     it("test fileQuery.copyToDir(dest: string)", function (done) {
-        var dirFilesCount = $('dir,file', $(d1Selector)).length;
+        var dir1FilesCount = $('dir,file', $(d1Selector)).length;
+        var dir2FilesCount = $('dir,file', $(d2Selector)).length;
 
         $(d1Selector).children('dir,file').copyToDir(d2FilePath).then(function (context) {
             $.fileQuery('refresh');
-            expect($('dir,file', $(d1Selector)).length).to.equal(dirFilesCount);
-            expect($('dir,file', $(d2Selector)).length).to.equal(dirFilesCount);
+            expect($('dir,file', $(d1Selector)).length).to.equal(dir1FilesCount);
+            expect($('dir,file', $(d2Selector)).length).to.equal(dir1FilesCount+dir2FilesCount);
             done();
         }).catch(function (error) {
             console.log('error:', error);

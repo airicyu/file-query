@@ -1,25 +1,25 @@
 'use strict';
 
-var os = require('os');
-var isWindow = os.type().indexOf('Win')===0 || os.platform().indexOf('win')===0;
+const os = require('os');
+const isWindow = os.type().indexOf('Win')===0 || os.platform().indexOf('win')===0;
 const execSync = require('child_process').execSync;
 
-var fs = require('fs');
-var fse = require('fs-extra')
-var path = require('path');
-var jsdom = require('jsdom');
-var RepoNode = require('./file-node').RepoNode;
-var FileNode = require('./file-node').FileNode;
-var html = require("html");
-var deasync = require('deasync');
+const fs = require('fs');
+const fse = require('fs-extra')
+const path = require('path');
+const jsdom = require('jsdom');
+const RepoNode = require('./file-node').RepoNode;
+const FileNode = require('./file-node').FileNode;
+const html = require("html");
+const deasync = require('deasync');
 
-var jquery = fs.readFileSync(path.join(__dirname, "../lib/jquery/dist/jquery.min.js"), "utf-8");
+const jquery = fs.readFileSync(path.join(__dirname, "../lib/jquery/dist/jquery.min.js"), "utf-8");
 
 const DEFAULT_OPTIONS = {
     debug: false
 }
 
-var fileQuery = function (options, callback) {
+const fileQuery = function (options, callback) {
 
     if (typeof options === 'string') {
         let rootDir = options;
@@ -280,8 +280,12 @@ function wrapPlugin($, options) {
 
         let processedNode = {};
         let results = [];
+        let searchBase = this.find('file');
+        if ($(this).attr('isFile')==='true'){
+            searchBase = searchBase.add(this);
+        }
 
-        this.find('file').each(function (i, em) {
+        searchBase.each(function (i, em) {
             let filePath = $(em).attr('filePath');
             if (processedNode[filePath]) {
                 return;
