@@ -14,6 +14,12 @@
 
 This node.js module can map your file directory structure into a virtual XML DOM data-structure. And then you can use jQuery selector feature to manipulate your directories/files.
 
+## Project Page
+
+- [Project Home](http://blog.airic-yu.com/1880/file-query-js-nodejs-module-using-jquery-manipulate-foldersfiles)
+- [Github](https://github.com/airicyu/file-query)
+- [NPM](https://www.npmjs.com/package/file-query)
+
 ## Install
 
 ```bash
