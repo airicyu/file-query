@@ -1,4 +1,4 @@
-# file-query
+# file-query.js
 
 [![npm version](https://img.shields.io/npm/v/file-query.svg)](https://www.npmjs.com/package/file-query)
 [![node](https://img.shields.io/node/v/file-query.svg)](https://www.npmjs.com/package/file-query)
